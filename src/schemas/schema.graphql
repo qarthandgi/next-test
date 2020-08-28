@@ -1,0 +1,317 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+type category {
+  created_on: timestamptz!
+  id: Int!
+  name: String!
+}
+
+type category_aggregate {
+  aggregate: category_aggregate_fields
+  nodes: [category!]!
+}
+
+type category_aggregate_fields {
+  avg: category_avg_fields
+  count(columns: [category_select_column!], distinct: Boolean): Int
+  max: category_max_fields
+  min: category_min_fields
+  stddev: category_stddev_fields
+  stddev_pop: category_stddev_pop_fields
+  stddev_samp: category_stddev_samp_fields
+  sum: category_sum_fields
+  var_pop: category_var_pop_fields
+  var_samp: category_var_samp_fields
+  variance: category_variance_fields
+}
+
+input category_aggregate_order_by {
+  avg: category_avg_order_by
+  count: order_by
+  max: category_max_order_by
+  min: category_min_order_by
+  stddev: category_stddev_order_by
+  stddev_pop: category_stddev_pop_order_by
+  stddev_samp: category_stddev_samp_order_by
+  sum: category_sum_order_by
+  var_pop: category_var_pop_order_by
+  var_samp: category_var_samp_order_by
+  variance: category_variance_order_by
+}
+
+input category_arr_rel_insert_input {
+  data: [category_insert_input!]!
+  on_conflict: category_on_conflict
+}
+
+type category_avg_fields {
+  id: Float
+}
+
+input category_avg_order_by {
+  id: order_by
+}
+
+input category_bool_exp {
+  _and: [category_bool_exp]
+  _not: category_bool_exp
+  _or: [category_bool_exp]
+  created_on: timestamptz_comparison_exp
+  id: Int_comparison_exp
+  name: String_comparison_exp
+}
+
+enum category_constraint {
+  category_pkey
+}
+
+input category_inc_input {
+  id: Int
+}
+
+input category_insert_input {
+  created_on: timestamptz
+  id: Int
+  name: String
+}
+
+type category_max_fields {
+  created_on: timestamptz
+  id: Int
+  name: String
+}
+
+input category_max_order_by {
+  created_on: order_by
+  id: order_by
+  name: order_by
+}
+
+type category_min_fields {
+  created_on: timestamptz
+  id: Int
+  name: String
+}
+
+input category_min_order_by {
+  created_on: order_by
+  id: order_by
+  name: order_by
+}
+
+type category_mutation_response {
+  affected_rows: Int!
+  returning: [category!]!
+}
+
+input category_obj_rel_insert_input {
+  data: category_insert_input!
+  on_conflict: category_on_conflict
+}
+
+input category_on_conflict {
+  constraint: category_constraint!
+  update_columns: [category_update_column!]!
+  where: category_bool_exp
+}
+
+input category_order_by {
+  created_on: order_by
+  id: order_by
+  name: order_by
+}
+
+input category_pk_columns_input {
+  id: Int!
+}
+
+enum category_select_column {
+  created_on
+  id
+  name
+}
+
+input category_set_input {
+  created_on: timestamptz
+  id: Int
+  name: String
+}
+
+type category_stddev_fields {
+  id: Float
+}
+
+input category_stddev_order_by {
+  id: order_by
+}
+
+type category_stddev_pop_fields {
+  id: Float
+}
+
+input category_stddev_pop_order_by {
+  id: order_by
+}
+
+type category_stddev_samp_fields {
+  id: Float
+}
+
+input category_stddev_samp_order_by {
+  id: order_by
+}
+
+type category_sum_fields {
+  id: Int
+}
+
+input category_sum_order_by {
+  id: order_by
+}
+
+enum category_update_column {
+  created_on
+  id
+  name
+}
+
+type category_var_pop_fields {
+  id: Float
+}
+
+input category_var_pop_order_by {
+  id: order_by
+}
+
+type category_var_samp_fields {
+  id: Float
+}
+
+input category_var_samp_order_by {
+  id: order_by
+}
+
+type category_variance_fields {
+  id: Float
+}
+
+input category_variance_order_by {
+  id: order_by
+}
+
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+type mutation_root {
+  delete_category(where: category_bool_exp!): category_mutation_response
+  delete_category_by_pk(id: Int!): category
+  insert_category(
+    objects: [category_insert_input!]!
+    on_conflict: category_on_conflict
+  ): category_mutation_response
+  insert_category_one(
+    object: category_insert_input!
+    on_conflict: category_on_conflict
+  ): category
+  update_category(
+    _inc: category_inc_input
+    _set: category_set_input
+    where: category_bool_exp!
+  ): category_mutation_response
+  update_category_by_pk(
+    _inc: category_inc_input
+    _set: category_set_input
+    pk_columns: category_pk_columns_input!
+  ): category
+}
+
+enum order_by {
+  asc
+  asc_nulls_first
+  asc_nulls_last
+  desc
+  desc_nulls_first
+  desc_nulls_last
+}
+
+type query_root {
+  category(
+    distinct_on: [category_select_column!]
+    limit: Int
+    offset: Int
+    order_by: [category_order_by!]
+    where: category_bool_exp
+  ): [category!]!
+  category_aggregate(
+    distinct_on: [category_select_column!]
+    limit: Int
+    offset: Int
+    order_by: [category_order_by!]
+    where: category_bool_exp
+  ): category_aggregate!
+  category_by_pk(id: Int!): category
+}
+
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  _ilike: String
+  _in: [String!]
+  _is_null: Boolean
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  _nilike: String
+  _nin: [String!]
+  _nlike: String
+  _nsimilar: String
+  _similar: String
+}
+
+type subscription_root {
+  category(
+    distinct_on: [category_select_column!]
+    limit: Int
+    offset: Int
+    order_by: [category_order_by!]
+    where: category_bool_exp
+  ): [category!]!
+  category_aggregate(
+    distinct_on: [category_select_column!]
+    limit: Int
+    offset: Int
+    order_by: [category_order_by!]
+    where: category_bool_exp
+  ): category_aggregate!
+  category_by_pk(id: Int!): category
+}
+
+scalar timestamptz
+
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+

@@ -1,0 +1,47 @@
+{
+  "name": "next-relay",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run relay && ts-node --project tsconfig.server.json server/index.ts",
+    "build:server": "webpack",
+    "build": "next build && npm run build:server",
+    "start": "NODE_ENV=production node dist/index.js",
+    "relay:compile": "relay-compiler --src ./src --schema ./src/schemas/schema.graphql --language typescript --artifactDirectory ./src/__generated__",
+    "relay": "npm run relay:schema && npm run relay:compile",
+    "relay:compiles": "relay-compiler",
+    "relay:compile-watch": "relay-compiler --watch",
+    "relay:schema": "graphql get-schema -e dev"
+  },
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
+    "express": "^4.17.1",
+    "graphql-cli": "^4.0.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "material-ui": "^0.20.2",
+    "next": "9.4.4",
+    "next-routes": "^1.4.2",
+    "node-sass": "^4.14.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "sass": "^1.26.10"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.6.0",
+    "@types/react": "^16.9.46",
+    "@types/react-relay": "^7.0.8",
+    "babel-plugin-relay": "^10.0.1",
+    "graphql": "^15.3.0",
+    "react-relay": "^10.0.1",
+    "relay-compiler": "^10.0.1",
+    "relay-compiler-language-typescript": "^13.0.1",
+    "relay-config": "^10.0.1",
+    "ts-loader": "^8.0.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7",
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^2.5.1"
+  }
+}
